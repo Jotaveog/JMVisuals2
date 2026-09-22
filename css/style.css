@@ -202,11 +202,6 @@ button {
     padding-left: 2.4rem
 }
 
-.site-nav span,
-.button span,
-.text-link span,
-.project-arrow,
-.service-symbol,
 .play-button span {
     font-family: var(--mono);
     font-size: 1.1rem;
@@ -214,15 +209,6 @@ button {
     line-height: 1;
     margin-left: .5rem;
     display: inline-block
-}
-
-.project-arrow,
-.service-symbol {
-    position: absolute;
-    right: 0;
-    top: 1.2rem;
-    font-size: 1.3rem;
-    margin-left: 0
 }
 
 .play-button span {
@@ -693,7 +679,7 @@ h2 em {
 .service-item {
     position: relative;
     display: grid;
-    grid-template-columns: 10% 1fr auto;
+    grid-template-columns: 10% 1fr;
     gap: 2rem;
     align-items: start;
     padding: 2.25rem 0;
@@ -722,12 +708,6 @@ h2 em {
     max-width: 490px;
     margin: 0;
     font-size: .85rem
-}
-
-.service-symbol {
-    position: static;
-    color: #aaa;
-    font-size: 1.2rem
 }
 
 .about {
@@ -1142,7 +1122,7 @@ h2 em {
     }
 
     .service-item {
-        grid-template-columns: 12% 1fr auto;
+        grid-template-columns: 12% 1fr;
         gap: .5rem
     }
 
