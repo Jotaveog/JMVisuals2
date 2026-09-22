@@ -1,0 +1,76 @@
+.project-card {
+  grid-column: span 6;
+}
+
+.project-card:nth-child(2) {
+  grid-column: 7 / span 6;
+}
+
+.project-card:nth-child(3) {
+  grid-column: 1 / span 6;
+}
+
+.project-card:nth-child(4) {
+  grid-column: 7 / span 6;
+}
+
+.project-card:nth-child(5) {
+  grid-column: 4 / span 6;
+}
+
+.project-media,
+.project-feature .project-media {
+  aspect-ratio: 1 / 1;
+}
+
+.showreel-frame {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  z-index: 1;
+  pointer-events: auto;
+}
+
+.showreel-video {
+  display: block;
+  width: min(82vw, 1180px);
+  max-width: calc(100% - 80px);
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center center;
+  border-radius: 18px;
+  background: #101010;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.32);
+  filter: saturate(1.05) contrast(1.03) blur(0);
+  cursor: pointer;
+  pointer-events: auto;
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.showreel:not(.is-playing) .showreel-video {
+  filter: saturate(0.8) contrast(0.9) blur(4px) brightness(0.72);
+}
+
+.showreel-content,
+.showreel-meta {
+  position: relative;
+  z-index: 2;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.showreel.is-playing .showreel-content,
+.showreel.is-playing .showreel-meta,
+.showreel.is-playing .play-button {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+@media (max-width: 800px) {
+
+  .project-card,
+  .project-card:nth-child(n) {
+    grid-column: auto;
+  }
+}
