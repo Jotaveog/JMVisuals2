@@ -1,10 +1,54 @@
 const header = document.querySelector('.site-header');
 const menuToggle = document.querySelector('.menu-toggle');
 const siteNav = document.querySelector('.site-nav');
+const backTop = document.querySelector('#back-top');
 
-const updateHeader = () => header.classList.toggle('scrolled', window.scrollY > 30);
+const updateHeader = () => {
+  header.classList.toggle('scrolled', window.scrollY > 30);
+  if (backTop) backTop.hidden = window.scrollY <= 600;
+};
 window.addEventListener('scroll', updateHeader, { passive: true });
 updateHeader();
+
+backTop?.addEventListener('click', (event) => {
+  event.preventDefault();
+  window.scrollTo({
+    top: 0,
+    behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'
+  });
+});
+
+const contactForm = document.querySelector('#contact-form');
+if (contactForm) {
+  const dateField = contactForm.elements.namedItem('date');
+  const today = new Date();
+  dateField.min = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+
+  contactForm.addEventListener('input', (event) => {
+    event.target.setCustomValidity?.('');
+    document.querySelector('#form-status').replaceChildren();
+  });
+  contactForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    for (const [name, minimum] of [['name', 2], ['city', 2], ['message', 10]]) {
+      const field = contactForm.elements.namedItem(name);
+      field.value = field.value.trim();
+      field.setCustomValidity(field.value.length < minimum ? `Preencha este campo com pelo menos ${minimum} caracteres.` : '');
+    }
+    if (!contactForm.reportValidity()) return;
+    const data = new FormData(contactForm);
+    const date = data.get('date') ? data.get('date').split('-').reverse().join('/') : 'A combinar';
+    const message = `Olá, JM Visuals! Gostaria de solicitar um orçamento.\n\nNome: ${data.get('name')}\nServiço: ${data.get('service')}\nData: ${date}\nCidade: ${data.get('city')}\n\nSobre o projeto: ${data.get('message')}`;
+    const url = `https://wa.me/5527999960198?text=${encodeURIComponent(message)}`;
+    const fallback = document.createElement('a');
+    fallback.href = url;
+    fallback.target = '_blank';
+    fallback.rel = 'noopener noreferrer';
+    fallback.textContent = 'Abrir a mensagem no WhatsApp';
+    document.querySelector('#form-status').replaceChildren('Mensagem preparada. Se a nova aba não abriu: ', fallback);
+    window.open(url, '_blank', 'noopener,noreferrer');
+  });
+}
 
 menuToggle.addEventListener('click', () => {
   const isOpen = menuToggle.classList.toggle('is-active');

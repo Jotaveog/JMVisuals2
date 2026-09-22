@@ -1,0 +1,58 @@
+.contact {
+  --contact-accent: var(--white);
+  --contact-line: rgba(255, 255, 255, .12);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(40px, 7vw, 100px);
+  padding: 100px max(7vw, calc((100vw - 1200px) / 2));
+  min-height: auto;
+  background: #151515;
+  text-align: left;
+  scroll-margin-top: 78px;
+}
+.contact .eyebrow { justify-content: flex-start; color: var(--contact-accent); }
+.contact h2 { font: 500 clamp(2.4rem, 3.6vw, 3.8rem)/1.15 var(--sans); letter-spacing: -.045em; margin: 0 0 24px; }
+.contact h2 em { display: inline; color: var(--contact-accent); font-style: normal; }
+.contact-copy > p:not(.eyebrow) { color: var(--muted); line-height: 1.8; }
+.contact-links { margin-top: 35px; max-width: 370px; }
+.contact-links > a, .contact-links > div { display: flex; align-items: center; gap: 17px; padding: 18px 0; border-bottom: 1px solid var(--contact-line); font-size: 13px; }
+.contact-links small { display: block; color: var(--muted); font-size: 9px; letter-spacing: 1.5px; margin-bottom: 5px; }
+.contact-icon { width: 24px; height: 24px; flex-shrink: 0; }
+.contact-links .contact-icon { color: var(--contact-accent); }
+.contact-links a:hover { color: var(--contact-accent); }
+.contact .coverage { max-width: 370px; font-size: 11px; margin-top: 20px; }
+.contact-form { min-width: 0; padding: 34px; border: 1px solid var(--contact-line); border-radius: 4px; background: #202020; }
+.contact-form h3 { font-size: 19px; font-weight: 600; margin: 0 0 28px; }
+.contact-form label { display: block; font-size: 11px; margin: 16px 0 8px; color: var(--paper); }
+.contact-form label span { color: var(--muted); font-size: 10px; }
+.contact-form input, .contact-form select, .contact-form textarea { width: 100%; min-width: 0; min-height: 45px; padding: 12px; border: 1px solid var(--contact-line); background: var(--ink); border-radius: 3px; color: var(--white); font: 12px var(--sans); color-scheme: dark; }
+.contact-form textarea { resize: vertical; min-height: 110px; }
+.contact-form input::placeholder, .contact-form textarea::placeholder { color: var(--muted); }
+.form-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
+.contact-form .contact-submit { width: 100%; margin-top: 20px; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; gap: 12px; background: var(--contact-accent); color: var(--ink); border-radius: 3px; font: 700 12px var(--sans); min-height: 51px; }
+.contact-submit:hover { background: var(--paper); }
+.form-note { color: var(--muted); font-size: 10px; text-align: center; margin: 12px 0 0; }
+#form-status { font-size: 12px; margin: 10px 0 0; }
+#form-status:empty { display: none; }
+#form-status a { color: var(--contact-accent); text-decoration: underline; }
+.contact :focus-visible, .floating-actions :focus-visible { outline: 2px solid var(--white); outline-offset: 5px; }
+.floating-actions { position: fixed; bottom: max(20px, env(safe-area-inset-bottom)); right: max(20px, env(safe-area-inset-right)); z-index: 19; display: grid; gap: 10px; justify-items: center; }
+.floating-whatsapp, .back-top { display: grid; place-items: center; border-radius: 50%; color: white; transition: background .2s, transform .2s; }
+.floating-whatsapp { width: 49px; height: 49px; background: #338454; border: 1px solid #ffffff30; box-shadow: 0 4px 25px #0004; }
+.floating-whatsapp .contact-icon { width: 27px; height: 27px; }
+.back-top { width: 44px; height: 44px; background: #202020; border: 1px solid #ffffff30; }
+.back-top[hidden] { display: none; }
+.floating-whatsapp:hover { background: #276c43; transform: translateY(-2px); }
+.back-top:hover { background: #353535; }
+.site-footer { padding-bottom: 100px; }
+.contact-symbols { position: absolute; width: 0; height: 0; overflow: hidden; }
+@media (max-width: 900px) {
+  .contact { grid-template-columns: minmax(0, 1fr); padding: 70px 7vw; gap: 40px; }
+  .contact-links { max-width: none; }
+}
+@media (max-width: 600px) {
+  .contact-form { padding: 22px; }
+  .contact-form input, .contact-form select, .contact-form textarea { font-size: 16px; }
+  .form-row { grid-template-columns: minmax(0, 1fr); gap: 0; }
+}
